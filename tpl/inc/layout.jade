@@ -1,0 +1,33 @@
+html(lang='en')
+  head
+    title #{jsn.config.meta.title}
+    meta(http-equiv="X-UA-Compatible",content="IE=Edge,chrome=1")
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height')
+
+    block variables
+
+    link(rel='stylesheet',href="#{rootdir}css/main.css",type='text/css',media='all')
+    script(type='text/javascript', src='#{rootdir}jst/loader.js')
+    script.
+      Loader.root = '#{rootdir}';
+
+  body
+    block content
+    include spinner
+
+    block script
+   
+      script(type='text/javascript').
+
+        Loader.scripts.jst_lib.push('jquery-2.1.4.min');
+        Loader.scripts.jst.push('main');
+        Loader.i( function(result) {
+          if (result) {
+            if (typeof(loadercomplete) === 'function') {
+              loadercomplete();
+            }
+          }
+        });
+
+    block postscript

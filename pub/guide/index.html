@@ -1,0 +1,91 @@
+
+<html lang="en">
+  <head>
+    <title>Luja</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="all"/>
+    <script type="text/javascript" src="../jst/loader.js"></script>
+    <script>
+      Loader.root = '../';
+      
+    </script>
+  </head>
+  <body>
+    <div class="guide">
+      <div class="title">Luja Sample Style Guide</div>
+      <div class="sections">
+        <div class="section">
+          <div class="inner">
+            <div class="title">Colors</div>
+            <div class="colors">
+              <div class="color c_blue1">c_blue1 </div>
+              <div class="color c_blue2">c_blue2 </div>
+              <div class="color c_blue3">c_blue3 </div>
+              <div class="color c_grey1">c_grey1 </div>
+              <div class="color c_grey2">c_grey2 </div>
+              <div class="color c_grey3">c_grey3 </div>
+              <div class="color c_black1">c_black1 </div>
+              <div class="color c_black2">c_black2 </div>
+              <div class="color c_white1">c_white1 </div>
+              <div class="color c_white2">c_white2 </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="inner">
+            <div class="title">Font sizes/types (1em = 16px)</div>
+            <div class="fonts">
+              <div class="font">
+                <div class="inner f_h1">f_h1 2em (32px) roboto-light</div>
+              </div>
+              <div class="font">
+                <div class="inner f_h2">f_h2 1.5em (24px) roboto-light</div>
+              </div>
+              <div class="font">
+                <div class="inner f_h3">f_h3 1.25em (20px) roboto-light</div>
+              </div>
+              <div class="font">
+                <div class="inner f_copy">f_copy 1em (16px) roboto-light</div>
+              </div>
+              <div class="font">
+                <div class="inner f_copyb">f_copyb 1em (16px) roboto-bold</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="inner">
+            <div class="title">Buttons/tooltips/etc</div>
+            <div class="buttons">
+              <div class="button">
+                <div class="btn btn1">
+                  <div class="inner">button 1 (.btn1)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="spinner off">
+      <svg viewbox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+      </svg>
+    </div>
+    <script type="text/javascript">
+      Loader.scripts.jst_lib.push('jquery-2.1.4.min');
+      Loader.scripts.jst.push('main');
+      Loader.i( function(result) {
+        if (result) {
+          if (typeof(loadercomplete) === 'function') {
+            loadercomplete();
+          }
+        }
+      });
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+
+.guide
+  background-color c_white1
+  desktop()
+  margin-top 20px
+  > .title
+    font f_h1
+    padding 10px 20px
+
+  > .sections
+    > .section
+      float left
+      width 33.333%
+      > .inner
+        padding 20px
+        > .title
+          font f_h2
+          margin 10px 0 10px 0
+        > .colors, > .fonts, .buttons
+          > .color
+            text-align center
+            padding 10px 5em
+            for i in 1..8
+              &.c_blue{i}
+                color c_white1
+                background-color (c_blue + i)
+            for i in 1..5
+              &.c_grey{i}
+                color c_black1
+                background-color (c_grey + i)
+            for i in 1..2
+              &.c_black{i}
+                color c_white1
+                background-color (c_black + i)
+          > .font
+            padding 10px 0
+            border-bottom 0.10px solid c_black1
+            > .inner
+              &.f_h1
+                font f_h1
+              &.f_h2
+                font f_h2
+              &.f_h3
+                font f_h3
+              &.f_copy
+                font f_copy
+              &.f_copyb
+                font f_copyb
+
+

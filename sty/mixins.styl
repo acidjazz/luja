@@ -1,0 +1,23 @@
+desktop()
+  max-width 1200px
+  margin auto
+
+clearfix()
+  &:before
+  &:after
+    content: ""
+    display: table
+  &:after
+    clear: both
+  zoom: 1 if support-for-ie
+
+fontfaces(dir, fonts)
+
+  for font in fonts
+    @font-face
+      font-family font
+      src url(fnt/dir/font.eot)
+      src url(fnt/dir/font.eot?#iefix) format('embedded-opentype'),
+        url(fnt/dir/font.ttf) format('truetype')
+      font-weight normal
+      font-style normal

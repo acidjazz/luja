@@ -1,0 +1,25 @@
+extends inc/layout
+
+block variables
+  - var rootdir = './'
+
+block content
+  .container
+    .clear
+
+    .top
+      .inner
+        .logo 160x40
+        .divider
+        .title Welcome to Luja
+        .clear
+      .clear
+
+    include inc/plans
+
+  script(type='text/javascript').
+    function loadercomplete() {
+      Loader.load('./jst/index.js', 'Index');
+      //Global.i()
+    }
+

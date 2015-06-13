@@ -1,0 +1,31 @@
+{
+  "name": "luja",
+  "version": "0.1.0",
+  "description": "Minimal Node-based framework designed for static-compiled websites",
+  "main": "index.html",
+  "dependencies": {
+    "colors": "*",
+    "jade": "*",
+    "moment": "*",
+    "require-directory": "^2.1.1",
+    "stylus": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/acidjazz/luja.git"
+  },
+  "author": {
+    "name": "Kevin Olson",
+    "email": "acidjazz@gmail.com",
+    "url": "http://ke.vin.so/"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acidjazz/luja/issues"
+  },
+  "homepage": "https://github.com/acidjazz/luja"
+}

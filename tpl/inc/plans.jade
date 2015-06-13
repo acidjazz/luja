@@ -1,0 +1,25 @@
+
+.plans
+  each plan in jsn.copy.plans
+    .plan
+      .inner
+        .title #{plan.name}
+        .price
+          .dollar $
+          - var price = plan.price.toString().split('.');
+          .integer #{price[0]}
+          .decimal .#{price[1]}
+          .copy MONTH
+          .clear
+
+        .other
+          .year
+            .price $#{plan.year}
+            .copy Year
+          .save Save $#{plan.save}
+          .clear
+      .pointer
+      .cta Buy Now
+      .copy #{plan.copy}
+
+  .clear

@@ -1,0 +1,9 @@
+
+# general
+.DS_Store
+
+# structure
+*.swp
+
+# Dependency directory
+node_modules

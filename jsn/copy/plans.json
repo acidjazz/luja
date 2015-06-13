@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Individual",
+    "price": 7.99,
+    "year": 79,
+    "save": 16.88,
+    "copy": "This is sample copy"
+  },
+  {
+    "name": "Family",
+    "price": 9.99,
+    "year": 99,
+    "save": 20.88,
+    "copy": "This copy is being pulled in from jsn/copy/plans.json"
+  },
+  {
+    "name": "Couple",
+    "price": 8.99,
+    "year": 89,
+    "save": 18.88,
+    "copy": "This is also a jade include from tpl/inc/plans.jade"
+  }
+]
