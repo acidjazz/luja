@@ -1,10 +1,8 @@
-var co, fs, jade, moment, path, pub, rd, stylus;
+var assign, co, fs, jade, moment, path, pub, stylus, yaml;
 
 pub = __dirname.substring(0, __dirname.length - 3);
 
 path = __dirname.substring(0, __dirname.length - 7);
-
-rd = require('require-directory');
 
 fs = require('fs');
 
@@ -14,14 +12,46 @@ stylus = require('stylus');
 
 moment = require('moment');
 
+yaml = require('js-yaml');
+
 co = require('colors');
 
+assign = Object.assign || require('object.assign');
+
+exports.data = function() {};
+
+exports.slurp = function(dir, data, key) {
+  var file, fileExt, fileFull, files, i, len;
+  files = fs.readdirSync(dir);
+  for (i = 0, len = files.length; i < len; i++) {
+    file = files[i];
+    fileFull = dir + '/' + file;
+    if (fs.lstatSync(fileFull).isDirectory()) {
+      data = assign(data, this.slurp(fileFull, data, file));
+    } else {
+      fileExt = file.split('.');
+      if (!(key in data)) {
+        data[key] = {};
+      }
+      if (fileExt[1] === 'json') {
+        data[key][fileExt[0]] = JSON.parse(fs.readFileSync(fileFull, 'utf8'));
+      }
+      if (fileExt[1] === 'yml' || fileExt[1] === 'yaml') {
+        data[key][fileExt[0]] = yaml.safeLoad(fs.readFileSync(fileFull, 'utf8'));
+      }
+    }
+  }
+  return data;
+};
+
 exports.jade = function(section) {
-  var file, i, jsn, len, locals, results, sections;
-  jsn = rd(module, path + 'jsn/');
+  var data, file, i, len, locals, results, sections;
+  data = this.slurp(path + 'dat', {}, 'root');
+  console.log(JSON.stringify(data, null, 2));
+  return true;
   locals = {
     pretty: true,
-    jsn: jsn
+    data: data
   };
   if (section !== void 0) {
     sections = [section];

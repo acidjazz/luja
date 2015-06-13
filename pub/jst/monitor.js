@@ -11,7 +11,7 @@ render = require(pub + "jst/render.js");
 
 throttles = [];
 
-exts = ['jade', 'styl'];
+exts = ['jade', 'styl', 'json', 'yml'];
 
 render.stylus();
 
