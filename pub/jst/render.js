@@ -1,8 +1,8 @@
 var assign, co, fs, jade, moment, path, pub, stylus, yaml;
 
-pub = __dirname.substring(0, __dirname.length - 3);
+path = process.cwd() + '/';
 
-path = __dirname.substring(0, __dirname.length - 7);
+pub = path + 'pub/';
 
 fs = require('fs');
 
@@ -22,11 +22,19 @@ exports.data = function() {};
 
 exports.slurp = function(dir, data, key) {
   var file, fileExt, fileFull, files, i, len;
+  if (!fs.existsSync(dir)) {
+    console.log('No data folder found, you probably have not initialized your structure yet, please run :');
+    console.log("\r\n");
+    console.log('node node_modules/luja/pub/jst/init.js');
+    console.log("\r\n");
+    process.exit();
+    return false;
+  }
   files = fs.readdirSync(dir);
   for (i = 0, len = files.length; i < len; i++) {
     file = files[i];
     fileFull = dir + '/' + file;
-    if (fs.lstatSync(fileFull).isDirectory()) {
+    if (fs.existsSync(fileFull)) {
       data = assign(data, this.slurp(fileFull, data, file));
     } else {
       fileExt = file.split('.');

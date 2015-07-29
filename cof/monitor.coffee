@@ -3,7 +3,7 @@ path = process.cwd()+'/'
 pub = path+'pub/'
 
 fs = require 'fs'
-render = require "#{pub}jst/render.js"
+render = require './render'
 
 throttles = []
 exts = ['jade', 'styl', 'json', 'yml']

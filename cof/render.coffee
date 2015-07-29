@@ -1,6 +1,6 @@
 
-pub = __dirname.substring 0, __dirname.length-3
-path = __dirname.substring 0, __dirname.length-7
+path = process.cwd()+'/'
+pub = path+'pub/'
 
 fs = require 'fs'
 jade = require 'jade'
@@ -10,17 +10,25 @@ yaml = require 'js-yaml'
 co = require 'colors'
 assign = Object.assign || require('object.assign')
 
-
 exports.data = () ->
 
 exports.slurp = (dir, data, key) ->
+
+  if !fs.existsSync(dir)
+    console.log 'No data folder found, you probably have not initialized your structure yet, please run :'
+    console.log "\r\n"
+    console.log 'node node_modules/luja/pub/jst/init.js'
+    console.log "\r\n"
+
+    process.exit()
+    return false
 
   files = fs.readdirSync(dir)
 
   for file in files
     fileFull = dir + '/' + file
 
-    if fs.lstatSync(fileFull).isDirectory()
+    if fs.existsSync(fileFull)
      data = assign data, this.slurp(fileFull, data, file)
     else
       fileExt = file.split '.'
