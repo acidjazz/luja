@@ -46,9 +46,7 @@ exports.slurp = function(dir, data, key) {
 
 exports.jade = function(section) {
   var data, file, i, len, locals, results, sections;
-  data = this.slurp(path + 'dat', {}, 'root');
-  console.log(JSON.stringify(data, null, 2));
-  return true;
+  data = this.slurp(path + 'dat', {}, 'root').root;
   locals = {
     pretty: true,
     data: data
@@ -56,7 +54,7 @@ exports.jade = function(section) {
   if (section !== void 0) {
     sections = [section];
   } else {
-    sections = jsn.config.sections;
+    sections = data.config.sections;
   }
   results = [];
   for (i = 0, len = sections.length; i < len; i++) {

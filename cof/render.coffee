@@ -35,15 +35,13 @@ exports.slurp = (dir, data, key) ->
 
 exports.jade = (section) ->
 
-  data = this.slurp(path + 'dat', {}, 'root')
-  console.log JSON.stringify data, null, 2
-  return true
+  data = this.slurp(path + 'dat', {}, 'root').root
 
   locals =
     pretty: true
     data: data
 
-  if section isnt undefined then sections = [section] else sections = jsn.config.sections
+  if section isnt undefined then sections = [section] else sections = data.config.sections
 
   for section in sections
     if section is 'index' then file = pub + 'index.html' else file = pub + "#{section}/index.html"

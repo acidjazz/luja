@@ -8,34 +8,3 @@ block content
   .guide
     .title Luja Sample Style Guide
 
-    .sections
-      .section
-        .inner
-          .title Colors
-          .colors
-            for i in [1,2,3]
-              .color(class='c_blue' + i) c_blue#{i} #{jsn.guide['blue' + i]}
-            for i in [1,2,3]
-              .color(class='c_grey' + i) c_grey#{i} #{jsn.guide['grey' + i]}
-            for i in [1,2]
-              .color(class='c_black' + i) c_black#{i} #{jsn.guide['black' + i]}
-            for i in [1,2]
-              .color(class='c_white' + i) c_white#{i} #{jsn.guide['white' + i]}
-      .section
-        .inner
-          .title Font sizes/types (1em = 16px)
-          .fonts
-            .font: .inner.f_h1 f_h1 2em (#{16*2}px) roboto-light
-            .font: .inner.f_h2 f_h2 1.5em (#{16*1.5}px) roboto-light
-            .font: .inner.f_h3 f_h3 1.25em (#{16*1.25}px) roboto-light
-            .font: .inner.f_copy f_copy 1em (#{16*1}px) roboto-light
-            .font: .inner.f_copyb f_copyb 1em (#{16*1}px) roboto-bold
-
-      .section
-        .inner
-          .title Buttons/tooltips/etc
-          .buttons
-            .button
-              .btn.btn1: .inner button 1 (.btn1)
-      .clear
-
