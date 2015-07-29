@@ -20,22 +20,14 @@ assign = Object.assign || require('object.assign');
 
 exports.data = function() {};
 
-exports.slurp = function(dir, data, key) {
+exports.stack = function(dir, data, key) {
   var file, fileExt, fileFull, files, i, len;
-  if (!fs.existsSync(dir)) {
-    console.log('No data folder found, you probably have not initialized your structure yet, please run :');
-    console.log("\r\n");
-    console.log('node_modules/luja/scr/init.sh');
-    console.log("\r\n");
-    process.exit();
-    return false;
-  }
   files = fs.readdirSync(dir);
   for (i = 0, len = files.length; i < len; i++) {
     file = files[i];
     fileFull = dir + '/' + file;
     if (fs.lstatSync(fileFull).isDirectory()) {
-      data = assign(data, this.slurp(fileFull, data, file));
+      data = assign(data, this.stack(fileFull, data, file));
     } else {
       fileExt = file.split('.');
       if (!(key in data)) {
@@ -52,9 +44,26 @@ exports.slurp = function(dir, data, key) {
   return data;
 };
 
+exports.slurp = function(path) {
+  var data, root;
+  data = this.stack(path, {}, 'root');
+  root = data.root;
+  delete data.root;
+  data = assign(root, data);
+  return data;
+};
+
 exports.jade = function(section) {
   var data, file, i, len, locals, results, sections;
-  data = this.slurp(path + 'dat', {}, 'root').root;
+  if (!fs.existsSync(path + 'dat')) {
+    console.log('No data folder found, you probably have not initialized your structure yet, please run :');
+    console.log("\r\n");
+    console.log('node_modules/luja/scr/init.sh');
+    console.log("\r\n");
+    process.exit();
+    return false;
+  }
+  data = this.slurp(path + 'dat');
   locals = {
     pretty: true,
     data: data
@@ -84,7 +93,7 @@ exports.jade = function(section) {
 
 exports.stylus = function() {
   var data, str;
-  data = this.slurp(path + 'dat', {}, 'root').root;
+  data = this.slurp(path + 'dat');
   str = fs.readFileSync(path + "sty/main.styl", 'utf8');
   return stylus(str).set('filename', path + "sty/main.styl").use(exports.sty).define('data', data, true).render(function(error, css) {
     if (error) {

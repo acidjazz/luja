@@ -12,16 +12,7 @@ assign = Object.assign || require('object.assign')
 
 exports.data = () ->
 
-exports.slurp = (dir, data, key) ->
-
-  if !fs.existsSync(dir)
-    console.log 'No data folder found, you probably have not initialized your structure yet, please run :'
-    console.log "\r\n"
-    console.log 'node_modules/luja/scr/init.sh'
-    console.log "\r\n"
-
-    process.exit()
-    return false
+exports.stack = (dir, data, key) ->
 
   files = fs.readdirSync(dir)
 
@@ -29,10 +20,11 @@ exports.slurp = (dir, data, key) ->
     fileFull = dir + '/' + file
 
     if fs.lstatSync(fileFull).isDirectory()
-     data = assign data, this.slurp(fileFull, data, file)
+      data = assign data, this.stack(fileFull, data, file)
     else
       fileExt = file.split '.'
       data[key] = {} if !(key of data)
+
 
       if fileExt[1] is 'json'
         data[key][fileExt[0]] = JSON.parse fs.readFileSync fileFull, 'utf8'
@@ -41,9 +33,25 @@ exports.slurp = (dir, data, key) ->
 
   return data
 
+exports.slurp = (path) ->
+  data = this.stack(path, {}, 'root')
+  root = data.root
+  delete data.root
+  data = assign root, data
+  return data
+
 exports.jade = (section) ->
 
-  data = this.slurp(path + 'dat', {}, 'root').root
+  if !fs.existsSync(path + 'dat')
+    console.log 'No data folder found, you probably have not initialized your structure yet, please run :'
+    console.log "\r\n"
+    console.log 'node_modules/luja/scr/init.sh'
+    console.log "\r\n"
+
+    process.exit()
+    return false
+
+  data = this.slurp(path + 'dat')
 
   locals =
     pretty: true
@@ -59,7 +67,7 @@ exports.jade = (section) ->
 
 exports.stylus = ->
 
-  data = this.slurp(path + 'dat', {}, 'root').root
+  data = this.slurp(path + 'dat')
 
   str = fs.readFileSync "#{path}sty/main.styl", 'utf8'
   stylus(str).set('filename', "#{path}sty/main.styl").use(exports.sty).define('data', data, true).render (error, css) ->
