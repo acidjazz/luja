@@ -1,11 +1,9 @@
 var exts, fs, path, pub, render, throttles,
   indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-pub = __dirname.substring(0, __dirname.length - 3);
+path = process.cwd() + '/';
 
-path = __dirname.substring(0, __dirname.length - 7);
-
-console.log(pub, path);
+pub = path + 'pub/';
 
 fs = require('fs');
 
@@ -36,6 +34,10 @@ fs.watch(path, {
       return throttle !== filename;
     });
   }, 200);
+  if (ext === 'yml') {
+    render.stylus();
+    render.jade();
+  }
   if (ext === 'styl') {
     render.stylus();
   }

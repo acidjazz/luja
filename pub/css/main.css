@@ -12,15 +12,15 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: c_grey2;
-  color: c_black1;
+  background-color: #ededed;
+  color: #000;
   font: 16px Helvetica;
 }
 .container {
-  background-color: c_grey1;
+  background-color: #f2f2f2;
 }
 .top {
-  background-color: c_white1;
+  background-color: #fff;
 }
 .top > .inner {
   max-width: 1200px;
@@ -33,14 +33,14 @@ body {
   height: 40px;
   text-align: center;
   line-height: 40px;
-  background-color: c_grey1;
+  background-color: #f2f2f2;
   margin: 0 0 0 20px;
 }
 .top > .inner > .divider {
   float: left;
   width: 1px;
   height: 40px;
-  background-color: c_grey2;
+  background-color: #ededed;
   margin: 0 30px;
 }
 .top > .inner > .title {
