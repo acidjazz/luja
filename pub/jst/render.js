@@ -75,9 +75,10 @@ exports.jade = function(section) {
 };
 
 exports.stylus = function() {
-  var str;
+  var data, str;
+  data = this.slurp(path + 'dat', {}, 'root').root;
   str = fs.readFileSync(path + "sty/main.styl", 'utf8');
-  return stylus(str).set('filename', path + "sty/main.styl").use(exports.sty).render(function(error, css) {
+  return stylus(str).set('filename', path + "sty/main.styl").use(exports.sty).define('data', data, true).render(function(error, css) {
     if (error) {
       console.log(error);
     }

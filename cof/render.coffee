@@ -50,8 +50,11 @@ exports.jade = (section) ->
     exports.report 'jade', "#{path}tpl/#{section}.jade", file
 
 exports.stylus = ->
+
+  data = this.slurp(path + 'dat', {}, 'root').root
+
   str = fs.readFileSync "#{path}sty/main.styl", 'utf8'
-  stylus(str).set('filename', "#{path}sty/main.styl").use(exports.sty).render (error, css) ->
+  stylus(str).set('filename', "#{path}sty/main.styl").use(exports.sty).define('data', data, true).render (error, css) ->
     console.log error if error
     fs.writeFileSync "#{pub}css/main.css", css, 'utf8'
     exports.report 'styl', "#{path}sty/main.styl", "#{pub}css/main.css"

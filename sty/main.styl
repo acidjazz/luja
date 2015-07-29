@@ -6,6 +6,10 @@ vendor-prefixes ?= webkit moz o ms official
 @import mixins
 @import variables
 
+c = {}
+for key, value in data.colors
+  c[key] = convert(value)
+
 .clear
   clearfix()
 
@@ -30,7 +34,7 @@ body
       height 40px
       text-align center
       line-height 40px
-      background-color c_grey2
+      background-color c_grey1
       margin 0 0 0 20px
     > .divider
       float left
@@ -41,15 +45,5 @@ body
     > .title
       float left
       font f_h1
-
-.btn1
-  color c_white1
-  background-color c_blue2
-  padding 1em 2em
-  border-radius 0.25em
-  > .inner
-    text-align center
-    font f_copy
-
-@import fonts
+      color: c.blue1
 

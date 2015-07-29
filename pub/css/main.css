@@ -33,7 +33,7 @@ body {
   height: 40px;
   text-align: center;
   line-height: 40px;
-  background-color: c_grey2;
+  background-color: c_grey1;
   margin: 0 0 0 20px;
 }
 .top > .inner > .divider {
@@ -46,29 +46,5 @@ body {
 .top > .inner > .title {
   float: left;
   font: 32px Impact;
-}
-.btn1 {
-  color: c_white1;
-  background-color: c_blue2;
-  padding: 1em 2em;
-  -webkit-border-radius: 0.25em;
-  border-radius: 0.25em;
-}
-.btn1 > .inner {
-  text-align: center;
-  font: 16px Helvetica;
-}
-@font-face {
-  font-family: roboto-light;
-  src: url("fnt/roboto/roboto-light.eot");
-  src: url("fnt/roboto/roboto-light.eot?#iefix") format('embedded-opentype'), url("fnt/roboto/roboto-light.ttf") format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: roboto-bold;
-  src: url("fnt/roboto/roboto-bold.eot");
-  src: url("fnt/roboto/roboto-bold.eot?#iefix") format('embedded-opentype'), url("fnt/roboto/roboto-bold.ttf") format('truetype');
-  font-weight: normal;
-  font-style: normal;
+  color: #18bee9;
 }
