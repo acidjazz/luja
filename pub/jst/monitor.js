@@ -5,6 +5,8 @@ pub = __dirname.substring(0, __dirname.length - 3);
 
 path = __dirname.substring(0, __dirname.length - 7);
 
+console.log(pub, path);
+
 fs = require('fs');
 
 render = require(pub + "jst/render.js");
