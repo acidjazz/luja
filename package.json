@@ -1,8 +1,8 @@
 {
   "name": "luja",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Minimal Node-based framework designed for static-compiled websites",
-  "main": "index.html",
+  "main": "pub/jst/monitor.js",
   "dependencies": {
     "colors": "*",
     "jade": "*",

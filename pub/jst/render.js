@@ -25,7 +25,7 @@ exports.slurp = function(dir, data, key) {
   if (!fs.existsSync(dir)) {
     console.log('No data folder found, you probably have not initialized your structure yet, please run :');
     console.log("\r\n");
-    console.log('node node_modules/luja/pub/jst/init.js');
+    console.log('node_modules/luja/scr/init.sh');
     console.log("\r\n");
     process.exit();
     return false;
@@ -34,7 +34,7 @@ exports.slurp = function(dir, data, key) {
   for (i = 0, len = files.length; i < len; i++) {
     file = files[i];
     fileFull = dir + '/' + file;
-    if (fs.existsSync(fileFull)) {
+    if (fs.lstatSync(fileFull).isDirectory()) {
       data = assign(data, this.slurp(fileFull, data, file));
     } else {
       fileExt = file.split('.');
