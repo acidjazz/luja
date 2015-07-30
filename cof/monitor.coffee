@@ -39,4 +39,6 @@ fs.watch path,
   
     if ext is 'jade'
       render.jade()
+      # TODO
+      # later we add the functionality to pass the file as long as it meets .sections
 
