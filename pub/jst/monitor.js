@@ -42,10 +42,6 @@ fs.watch(path, {
     render.stylus();
   }
   if (ext === 'jade') {
-    if (dirs[1] !== void 0 && dirs[1] === 'inc') {
-      return render.jade();
-    } else {
-      return render.jade(name.split('.')[0]);
-    }
+    return render.jade();
   }
 });

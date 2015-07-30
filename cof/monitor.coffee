@@ -36,11 +36,7 @@ fs.watch path,
 
     if ext is 'styl'
       render.stylus()
-
   
     if ext is 'jade'
-      if dirs[1] isnt undefined and dirs[1] is 'inc'
-        render.jade()
-      else
-        render.jade name.split('.')[0]
+      render.jade()
 
