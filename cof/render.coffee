@@ -62,27 +62,31 @@ exports.jade = (section) ->
   # write our index.html
   fs.writeFile pub + 'index.html', jade.renderFile("#{path}tpl/index.jade", locals), (error) ->
     console.log error if error
-  exports.report 'jade', "#{path}tpl/index.jade", pub + 'index.html'
+  exports.report 'jade', "./tpl/index.jade", './index.html'
 
   for section in sections
     file = pub + "#{section}/index.html"
 
     if !fs.existsSync(pub + section)
       fs.mkdirSync(pub + section)
-      exports.report 'self', 'created  ' pub + section
+      exports.report 'self', 'created ' + pub + section
     fs.writeFile pub + section + '/index.html', jade.renderFile("#{path}tpl/#{section}/index.jade", locals), (error) ->
       console.log error if error
-    exports.report 'jade', "#{path}tpl/#{section}/index.jade", pub + section + '/index.html'
+    exports.report 'jade', "./tpl/#{section}/index.jade", './pub/' + section + '/index.html'
 
 exports.stylus = ->
 
   data = this.slurp(path + 'dat')
 
   str = fs.readFileSync "#{path}sty/main.styl", 'utf8'
-  stylus(str).set('filename', "#{path}sty/main.styl").use(exports.sty).define('data', data, true).render (error, css) ->
-    console.log error if error
-    fs.writeFileSync "#{pub}css/main.css", css, 'utf8'
-    exports.report 'styl', "#{path}sty/main.styl", "#{pub}css/main.css"
+  stylus(str)
+    .set('filename', "#{path}sty/main.styl")
+    .use(exports.sty)
+    .define('data', data, true)
+    .render (error, css) ->
+      console.log error if error
+      fs.writeFileSync "#{pub}css/main.css", css, 'utf8'
+      exports.report 'styl', "./sty/main.styl", "./pub/css/main.css"
 
 exports.sty = (style) ->
   style.set 'paths', ["#{path}sty"]
@@ -92,7 +96,7 @@ exports.report = (engine, from, to) ->
   engine = co.magenta engine if engine is 'styl'
   engine = co.blue engine if engine is 'self'
 
-  stamp = moment().format('M/D/YY h:mm:ss,SSa')
+  stamp = co.grey moment().format('M/D/YY h:mm:ss,SSa')
 
   if to is undefined
     from = co.white from

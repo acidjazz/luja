@@ -78,21 +78,21 @@ exports.jade = function(section) {
       return console.log(error);
     }
   });
-  exports.report('jade', path + "tpl/index.jade", pub + 'index.html');
+  exports.report('jade', "./tpl/index.jade", './index.html');
   results = [];
   for (i = 0, len = sections.length; i < len; i++) {
     section = sections[i];
     file = pub + (section + "/index.html");
     if (!fs.existsSync(pub + section)) {
       fs.mkdirSync(pub + section);
-      exports.report('self', "created " + pub + section);
+      exports.report('self', 'created ' + pub + section);
     }
     fs.writeFile(pub + section + '/index.html', jade.renderFile(path + "tpl/" + section + "/index.jade", locals), function(error) {
       if (error) {
         return console.log(error);
       }
     });
-    results.push(exports.report('jade', path + "tpl/" + section + "/index.jade", pub + section + '/index.html'));
+    results.push(exports.report('jade', "./tpl/" + section + "/index.jade", './pub/' + section + '/index.html'));
   }
   return results;
 };
@@ -106,7 +106,7 @@ exports.stylus = function() {
       console.log(error);
     }
     fs.writeFileSync(pub + "css/main.css", css, 'utf8');
-    return exports.report('styl', path + "sty/main.styl", pub + "css/main.css");
+    return exports.report('styl', "./sty/main.styl", "./pub/css/main.css");
   });
 };
 
@@ -125,7 +125,7 @@ exports.report = function(engine, from, to) {
   if (engine === 'self') {
     engine = co.blue(engine);
   }
-  stamp = moment().format('M/D/YY h:mm:ss,SSa');
+  stamp = co.grey(moment().format('M/D/YY h:mm:ss,SSa'));
   if (to === void 0) {
     from = co.white(from);
     console.log("[" + stamp + "] [" + engine + "] " + from);
