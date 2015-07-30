@@ -61,6 +61,10 @@ exports.jade = (section) ->
 
   for section in sections
     if section is 'index' then file = pub + 'index.html' else file = pub + "#{section}/index.html"
+
+    if !fs.existsSync("#{pub}/#{section}")
+      fs.mkdirSync("#{pub}/#{section}")
+      exports.report 'self', "created #{pub}#{section}"
     fs.writeFile file, jade.renderFile("#{path}tpl/#{section}.jade", locals), (error) ->
       console.log error if error
     exports.report 'jade', "#{path}tpl/#{section}.jade", file
@@ -81,8 +85,16 @@ exports.sty = (style) ->
 exports.report = (engine, from, to) ->
   engine = co.cyan engine if engine is 'jade'
   engine = co.magenta engine if engine is 'styl'
+  engine = co.blue engine if engine is 'self'
+
+  stamp = moment().format('M/D/YY h:mm:ss,SSa')
+
+  if to is undefined
+    from = co.white from
+    console.log "[#{stamp}] [#{engine}] #{from}"
+    return true
+
   from = co.yellow from
   to = co.green to
-  stamp = moment().format('M/D/YY h:mm:ss,SSa')
   console.log "[#{stamp}] [#{engine}] #{from} -> #{to}"
 

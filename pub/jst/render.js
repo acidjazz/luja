@@ -81,6 +81,10 @@ exports.jade = function(section) {
     } else {
       file = pub + (section + "/index.html");
     }
+    if (!fs.existsSync(pub + "/" + section)) {
+      fs.mkdirSync(pub + "/" + section);
+      exports.report('self', "created " + pub + section);
+    }
     fs.writeFile(file, jade.renderFile(path + "tpl/" + section + ".jade", locals), function(error) {
       if (error) {
         return console.log(error);
@@ -116,8 +120,16 @@ exports.report = function(engine, from, to) {
   if (engine === 'styl') {
     engine = co.magenta(engine);
   }
+  if (engine === 'self') {
+    engine = co.blue(engine);
+  }
+  stamp = moment().format('M/D/YY h:mm:ss,SSa');
+  if (to === void 0) {
+    from = co.white(from);
+    console.log("[" + stamp + "] [" + engine + "] " + from);
+    return true;
+  }
   from = co.yellow(from);
   to = co.green(to);
-  stamp = moment().format('M/D/YY h:mm:ss,SSa');
   return console.log("[" + stamp + "] [" + engine + "] " + from + " -> " + to);
 };
