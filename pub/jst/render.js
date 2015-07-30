@@ -73,24 +73,26 @@ exports.jade = function(section) {
   } else {
     sections = data.config.sections;
   }
+  fs.writeFile(pub + 'index.html', jade.renderFile(path + "tpl/index.jade", locals), function(error) {
+    if (error) {
+      return console.log(error);
+    }
+  });
+  exports.report('jade', path + "tpl/index.jade", pub + 'index.html');
   results = [];
   for (i = 0, len = sections.length; i < len; i++) {
     section = sections[i];
-    if (section === 'index') {
-      file = pub + 'index.html';
-    } else {
-      file = pub + (section + "/index.html");
-    }
-    if (!fs.existsSync(pub + "/" + section)) {
-      fs.mkdirSync(pub + "/" + section);
+    file = pub + (section + "/index.html");
+    if (!fs.existsSync(pub + section)) {
+      fs.mkdirSync(pub + section);
       exports.report('self', "created " + pub + section);
     }
-    fs.writeFile(file, jade.renderFile(path + "tpl/" + section + ".jade", locals), function(error) {
+    fs.writeFile(pub + section + '/index.html', jade.renderFile(path + "tpl/" + section + "/index.jade", locals), function(error) {
       if (error) {
         return console.log(error);
       }
     });
-    results.push(exports.report('jade', path + "tpl/" + section + ".jade", file));
+    results.push(exports.report('jade', path + "tpl/" + section + "/index.jade", pub + section + '/index.html'));
   }
   return results;
 };
