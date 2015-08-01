@@ -73,12 +73,18 @@ exports.jade = function(section) {
   } else {
     sections = data.config.sections;
   }
-  fs.writeFile(pub + 'index.html', jade.renderFile(path + "tpl/index.jade", locals), function(error) {
-    if (error) {
-      return console.log(error);
+  jade.renderFile(path + "tpl/index.jade", locals, function(err, html) {
+    if (err) {
+      return console.log(err);
+    } else {
+      fs.writeFile(pub + 'index.html', html, function(error) {
+        if (error) {
+          return console.log(error);
+        }
+      });
+      return exports.report('jade', "./tpl/index.jade", './index.html');
     }
   });
-  exports.report('jade', "./tpl/index.jade", './index.html');
   results = [];
   for (i = 0, len = sections.length; i < len; i++) {
     section = sections[i];
@@ -92,7 +98,18 @@ exports.jade = function(section) {
         return console.log(error);
       }
     });
-    results.push(exports.report('jade', "./tpl/" + section + "/index.jade", './pub/' + section + '/index.html'));
+    results.push(jade.renderFile(path + "tpl/" + section + "/index.jade", locals, function(err, html) {
+      if (err) {
+        return console.log(err);
+      } else {
+        fs.writeFile(pub + section + 'index.html', html, function(error) {
+          if (error) {
+            return console.log(error);
+          }
+        });
+        return exports.report('jade', "./tpl/" + section + "/index.jade", './pub/' + section + '/index.html');
+      }
+    }));
   }
   return results;
 };

@@ -60,9 +60,13 @@ exports.jade = (section) ->
   if section isnt undefined then sections = [section] else sections = data.config.sections
 
   # write our index.html
-  fs.writeFile pub + 'index.html', jade.renderFile("#{path}tpl/index.jade", locals), (error) ->
-    console.log error if error
-  exports.report 'jade', "./tpl/index.jade", './index.html'
+  jade.renderFile "#{path}tpl/index.jade", locals, (err, html) ->
+    if err
+      console.log err
+    else
+      fs.writeFile pub + 'index.html', html, (error) ->
+        console.log error if error
+      exports.report 'jade', "./tpl/index.jade", './index.html'
 
   for section in sections
     file = pub + "#{section}/index.html"
@@ -70,9 +74,18 @@ exports.jade = (section) ->
     if !fs.existsSync(pub + section)
       fs.mkdirSync(pub + section)
       exports.report 'self', 'created ' + pub + section
+
     fs.writeFile pub + section + '/index.html', jade.renderFile("#{path}tpl/#{section}/index.jade", locals), (error) ->
       console.log error if error
-    exports.report 'jade', "./tpl/#{section}/index.jade", './pub/' + section + '/index.html'
+
+    # write our sections index.html
+    jade.renderFile "#{path}tpl/#{section}/index.jade", locals, (err, html) ->
+      if err
+        console.log err
+      else
+        fs.writeFile pub + section + 'index.html', html, (error) ->
+          console.log error if error
+        exports.report 'jade', "./tpl/#{section}/index.jade", './pub/' + section + '/index.html'
 
 exports.stylus = ->
 
