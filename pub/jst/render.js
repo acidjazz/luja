@@ -93,16 +93,11 @@ exports.jade = function(section) {
       fs.mkdirSync(pub + section);
       exports.report('self', 'created ' + pub + section);
     }
-    fs.writeFile(pub + section + '/index.html', jade.renderFile(path + "tpl/" + section + "/index.jade", locals), function(error) {
-      if (error) {
-        return console.log(error);
-      }
-    });
     results.push(jade.renderFile(path + "tpl/" + section + "/index.jade", locals, function(err, html) {
       if (err) {
         return console.log(err);
       } else {
-        fs.writeFile(pub + section + 'index.html', html, function(error) {
+        fs.writeFile(pub + section + '/index.html', html, function(error) {
           if (error) {
             return console.log(error);
           }

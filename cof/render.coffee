@@ -75,15 +75,12 @@ exports.jade = (section) ->
       fs.mkdirSync(pub + section)
       exports.report 'self', 'created ' + pub + section
 
-    fs.writeFile pub + section + '/index.html', jade.renderFile("#{path}tpl/#{section}/index.jade", locals), (error) ->
-      console.log error if error
-
     # write our sections index.html
     jade.renderFile "#{path}tpl/#{section}/index.jade", locals, (err, html) ->
       if err
         console.log err
       else
-        fs.writeFile pub + section + 'index.html', html, (error) ->
+        fs.writeFile pub + section + '/index.html', html, (error) ->
           console.log error if error
         exports.report 'jade', "./tpl/#{section}/index.jade", './pub/' + section + '/index.html'
 
