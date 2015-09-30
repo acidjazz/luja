@@ -4,5 +4,4 @@ meta:
   title: "Luja"
   description: "sample metadata description"
 sections: 
-  - "index"
   - "guide"
