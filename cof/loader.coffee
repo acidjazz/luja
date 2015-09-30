@@ -1,8 +1,6 @@
 
 Loader =
 
-  root: './'
-
   scripts: {jst: [], jst_lib: [], jst_cune: [], jst_cune_lib: []}
 
   i: (callback) ->
@@ -63,7 +61,7 @@ Loader =
   loadscripts: (list, complete) ->
     paths = []
     i = 0
-    paths.push Loader.root + folder.replace(/_/g,'/') + '/' + script + '.js' for script in scripts for folder, scripts of list
+    paths.push '/' + folder.replace(/_/g,'/') + '/' + script + '.js' for script in scripts for folder, scripts of list
 
     floop = (arr) ->
       Loader.load paths[i], false, ->

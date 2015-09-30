@@ -1,7 +1,6 @@
 var Loader;
 
 Loader = {
-  root: './',
   scripts: {
     jst: [],
     jst_lib: [],
@@ -106,7 +105,7 @@ Loader = {
       scripts = list[folder];
       for (j = 0, len = scripts.length; j < len; j++) {
         script = scripts[j];
-        paths.push(Loader.root + folder.replace(/_/g, '/') + '/' + script + '.js');
+        paths.push('/' + folder.replace(/_/g, '/') + '/' + script + '.js');
       }
     }
     floop = function(arr) {
