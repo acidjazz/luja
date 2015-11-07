@@ -1,3 +1,4 @@
+`#!/usr/bin/env node`
 
 path = process.cwd()+'/'
 pub = path+'pub/'
