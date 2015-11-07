@@ -1,6 +1,6 @@
 {
   "name": "luja",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Minimal Node-based framework designed for static-compiled websites",
   "main": "pub/jst/monitor.js",
   "dependencies": {
@@ -12,7 +12,7 @@
     "stylus": "*"
   },
   "bin": {
-    "monitor": "pub/jst/monitor.js"
+    "luja": "pub/jst/monitor.js"
   },
   "devDependencies": {},
   "scripts": {
