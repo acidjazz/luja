@@ -11,6 +11,9 @@
     "object.assign": "^3.0.0",
     "stylus": "*"
   },
+  "bin": {
+    "monitor": "pub/jst/monitor.js"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
