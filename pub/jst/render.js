@@ -22,6 +22,14 @@ exports.data = function() {};
 
 exports.stack = function(dir, data, key) {
   var file, fileExt, fileFull, files, i, len;
+  if (!fs.existsSync(dir)) {
+    console.log('No data folder found, you probably have not initialized your structure yet, please run :');
+    console.log("\r\n");
+    console.log('node_modules/luja/scr/init.sh');
+    console.log("\r\n");
+    process.exit();
+    return false;
+  }
   files = fs.readdirSync(dir);
   for (i = 0, len = files.length; i < len; i++) {
     file = files[i];
