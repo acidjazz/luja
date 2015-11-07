@@ -14,3 +14,4 @@ Luja is [finnish for firm](https://translate.google.com/?ie=UTF-8&hl=en&client=t
 * Infinite Multidimensional data/config/copy structure of [JSON](http://json.org/) or [YAML](http://www.yaml.org/) for both preprocessors
 * Custom file alteration monitoring
 ![monitoring](pub/img/monitor.png)
+
