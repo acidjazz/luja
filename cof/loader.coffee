@@ -85,3 +85,16 @@ Loader =
     , false
 
     document.body.appendChild(el)
+
+
+  jsonp: (script, initiate, complete) ->
+
+    el = document.createElement 'script'
+    el.type = 'text/json'
+    el.src = script
+    el.addEventListener 'load' , (e) ->
+      complete() if typeof complete is 'function'
+      window[initiate].i() if initiate isnt undefined and initiate isnt false
+    , false
+
+    document.body.appendChild(el)

@@ -5,3 +5,17 @@ block content
   .guide
     .title Luja Sample Style Guide
 
+    .sections
+      .section.colors
+        .title Colors
+        each color, name in data.colors
+          .color(class='color_'+name) #{name} (#{color})
+      .section.fonts
+        .title Fonts
+
+        .font.font_f_copy f_copy 16px gotham book
+        .font.font_f_copy2 f_copyb 16px Impact
+        .font.font_f_h1 f_h1 32px Impact
+        .font.font_f_h2 f_h2 24px Impact
+        .font.font_f_h3 f_h3 20px Impact
+      .clear

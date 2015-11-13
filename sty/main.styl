@@ -2,9 +2,10 @@
 vendor-prefixes ?= webkit moz o ms official
 
 // needed
+@import guide
 @import vendor
 @import mixins
-@import variables
+//@import /inc/*
 
 c = {}
 for key, value in data.colors
@@ -16,34 +17,9 @@ for key, value in data.colors
 body
   margin 0
   padding 0
-  background-color: c.grey2
+  background-color: c.white1
   color: c.black1
   font f_copy
 
 .container
   background-color: c.grey1
-
-.top
-  background-color: c.white1
-  > .inner
-    desktop()
-    padding 20px 0
-    > .logo
-      float left
-      width 160px
-      height 40px
-      text-align center
-      line-height 40px
-      background-color: c.grey1
-      margin 0 0 0 20px
-    > .divider
-      float left
-      width 1px
-      height 40px
-      background-color: c.grey2
-      margin 0 30px
-    > .title
-      float left
-      font f_h1
-      color: c.blue1
-

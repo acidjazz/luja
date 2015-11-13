@@ -1,0 +1,57 @@
+
+f_size = 16px
+
+f_copy = f_size Helvetica
+f_copyb = f_size Impact
+f_h1 = f_size*2 Impact
+f_h2 = f_size*1.5 Helvetica
+f_h3 = f_size*1.25 Helvetica
+
+// colors
+c = {}
+for key, value in data.colors
+  c[key] = convert(value)
+
+.guide
+  padding 50px 0 0 0 
+  background-color: c.white1
+  > .title
+    font f_h1
+    padding 0 0 0 50px
+    text-transform uppercase
+
+  > .sections
+    padding 20px
+    > .section
+      width 33%
+      float left
+
+      > .color
+        padding 10px 20px
+        margin 5px
+        for name, color in data.colors
+          &.color_{name}
+            background-color: convert(color)
+            if dark(convert(color))
+              border: 1px solid c.white1
+              color: c.white1
+            else
+              border: 1px solid c.black1
+              color: c.black1
+ 
+      > .font
+        padding 10px 20px
+        margin 5px
+        background-color: c.white1
+        white-space nowrap
+        overflow-x scroll
+        &.font_f_copy
+          font f_copy
+        &.font_f_copyb
+          font f_copyb
+        &.font_f_h1
+          font f_h1
+        &.font_f_h2
+          font f_h3
+        &.font_f_h3
+          font f_h2

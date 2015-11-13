@@ -139,5 +139,20 @@ Loader = {
       }
     }, false);
     return document.body.appendChild(el);
+  },
+  jsonp: function(script, initiate, complete) {
+    var el;
+    el = document.createElement('script');
+    el.type = 'text/json';
+    el.src = script;
+    el.addEventListener('load', function(e) {
+      if (typeof complete === 'function') {
+        complete();
+      }
+      if (initiate !== void 0 && initiate !== false) {
+        return window[initiate].i();
+      }
+    }, false);
+    return document.body.appendChild(el);
   }
 };
